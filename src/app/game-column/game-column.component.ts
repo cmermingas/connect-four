@@ -22,10 +22,12 @@ export class GameColumnComponent implements OnInit {
   imgSrc = [];
 
   constructor() {
-    this.imgSrc[CellContent.Empty] = '/app/img/empty.png';
-    this.imgSrc[CellContent.Player1] = '/app/img/player1.png';
-    this.imgSrc[CellContent.Player2] = '/app/img/player2.png';
-    this.imgSrc[CellContent.Winning] = '/app/img/winning.png';
+    // Hardcoding this path here while I figure out why the images don't show up on Github Pages:
+    const IMG_PATH = 'https://raw.githubusercontent.com/cmermingas/connect-four/master/app/img/'
+    this.imgSrc[CellContent.Empty] = IMG_PATH + 'empty.png';
+    this.imgSrc[CellContent.Player1] = IMG_PATH + 'player1.png';
+    this.imgSrc[CellContent.Player2] = IMG_PATH + 'player2.png';
+    this.imgSrc[CellContent.Winning] = IMG_PATH + 'winning.png';
   }
 
   ngOnInit() {}

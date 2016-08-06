@@ -8,6 +8,7 @@
   border-style: dashed;
   border-color: #a9a9a9;
   margin: 0 1px 0 1px;
+  user-select: none;
 }
 
 .column.active:hover {
@@ -19,4 +20,5 @@ img {
   width: 100%;
   height: auto;
   margin: 1px;
+  user-select: none;
 }
