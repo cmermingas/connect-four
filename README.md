@@ -35,6 +35,7 @@ When it comes to styling, the CSS files seem a bit scattered and coupled. For ex
 ## Next Steps
 Main:
 * An algorithm that plays the game.
+* Undo.
 * A way to play over the network. Ideally without a server in the middle.
 * Tinker with different models and see how they affect (or not) the components' behavior.
 * Support more than two players.
