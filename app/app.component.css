@@ -1,0 +1,43 @@
+h2 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.title-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px; }
+
+.info-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: .5;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .info-panel button {
+    font-size: large; }
+  .info-panel .player-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 5px; }
+    .info-panel .player-info img {
+      max-width: 30px;
+      height: auto;
+      margin-left: 5px; }
+
+.current-player {
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: #ffff99; }
+
+.winner {
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: #ffff99; }
+  .winner ::after {
+    content: " WINS!"; }
