@@ -1,0 +1,22 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  //justify-content: flex-end;
+  border-width: 0 1px;
+  border-style: dashed;
+  border-color: #a9a9a9;
+  margin: 0 1px 0 1px;
+}
+
+.column.active:hover {
+  background-color: #ffffe5;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  margin: 1px;
+}

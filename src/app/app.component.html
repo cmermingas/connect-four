@@ -1,3 +1,14 @@
-<h1>
-  {{title}}
-</h1>
+<div class="title-panel">
+  <h2>Connect Four</h2>
+  <div class="info-panel">
+    <div class="player-info" [class.current-player]="game.currentPlayer === 1" [class.winner]="game.winner === 1">
+      <span>Player 1</span><img src="/app/img/player1.png">
+    </div>
+    <div class="player-info" [class.current-player]="game.currentPlayer === 2" [class.winner]="game.winner === 2">
+      <span>Player 2</span><img src="/app/img/player2.png">
+    </div>
+    <button (click)="resetGame()">New Game</button>
+  </div>
+</div>
+
+<connect-four [game]="game"></connect-four>

@@ -1,0 +1,67 @@
+$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$debug: false;
+$current-player-color: #ffff99;
+
+@if $debug {
+  h2, div {
+    border: 1px solid blue;
+  }
+}
+
+h2 {
+  font-family: $font-family;
+}
+
+.title-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.info-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: .5;
+  font-family: $font-family;
+
+  button {
+    font-size: large;
+  }
+
+  .player-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    padding: 5px;
+
+    img {
+      max-width: 30px;
+      height: auto;
+      margin-left: 5px;
+    }
+  }
+}
+
+.current-player {
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: $current-player-color;
+}
+
+.winner {
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: $current-player-color;
+
+  ::after {
+    content: " WINS!"
+  }
+}

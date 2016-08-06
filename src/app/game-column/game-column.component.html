@@ -1,0 +1,4 @@
+<div class="column" [class.active]="!gameOver" (click)="onClick($event)">
+  <!--<game-cell *ngFor="let cell of gameColumn.cells" [cell]="cell.content"></game-cell>-->
+  <img *ngFor="let cell of gameColumn.cells" [src]="imgSrc[cell.content]">
+</div>
