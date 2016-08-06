@@ -1,12 +1,5 @@
 $font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$debug: false;
 $current-player-color: #ffff99;
-
-@if $debug {
-  h2, div {
-    border: 1px solid blue;
-  }
-}
 
 h2 {
   font-family: $font-family;
