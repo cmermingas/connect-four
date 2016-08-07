@@ -23,7 +23,7 @@ export class GameColumnComponent implements OnInit {
 
   constructor() {
     // Hardcoding this path here while I figure out why the images don't show up on Github Pages:
-    const IMG_PATH = 'https://raw.githubusercontent.com/cmermingas/connect-four/master/app/img/'
+    const IMG_PATH = 'https://raw.githubusercontent.com/cmermingas/connect-four/master/src/app/img/';
     // const IMG_PATH = '/app/img/';
     this.imgSrc[CellContent.Empty] = IMG_PATH + 'empty.png';
     this.imgSrc[CellContent.Player1] = IMG_PATH + 'player1.png';

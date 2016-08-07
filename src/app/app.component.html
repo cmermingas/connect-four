@@ -5,13 +5,13 @@
       <span>Player 1</span>
       <!--<img src="/app/img/player1.png">-->
       <!--Hardcoding this path here while I figure out why the images don't show up on Github Pages-->
-      <img src="https://raw.githubusercontent.com/cmermingas/connect-four/master/app/img/player1.png">
+      <img src="https://raw.githubusercontent.com/cmermingas/connect-four/master/src/app/img/player1.png">
     </div>
     <div class="player-info" [class.current-player]="game.currentPlayer === 2" [class.winner]="game.winner === 2">
       <span>Player 2</span>
       <!--<img src="/app/img/player2.png">-->
       <!--Hardcoding this path here while I figure out why the images don't show up on Github Pages-->
-      <img src="https://raw.githubusercontent.com/cmermingas/connect-four/master/app/img/player2.png">
+      <img src="https://raw.githubusercontent.com/cmermingas/connect-four/master/src/app/img/player2.png">
     </div>
     <button (click)="resetGame()">New Game</button>
   </div>
