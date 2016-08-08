@@ -14,7 +14,10 @@
 <body>
   <app-root>Loading...</app-root>
 
-    {{#each scripts.polyfills}}
+    <!-- This shouldn't be here! -->
+  <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script>
+
+  {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
     {{/each}}
     <script>
