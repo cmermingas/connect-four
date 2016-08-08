@@ -43,5 +43,5 @@ Main:
 * Fill in the test specs.
 
 Side dishes:
-* Better images.
+* Better images/look.
 * Or no images at all pure CSS. The only reason I used images was to be able to make it responsive.
