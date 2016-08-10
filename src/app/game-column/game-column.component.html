@@ -1,5 +1,5 @@
 <div class="column" [class.active]="!gameOver" (click)="onClick($event)">
-  {{gameColumn.index}}
+  <!--{{gameColumn.index}}-->
   <img *ngFor="let cell of gameColumn.cells"
        [src]="cell.isWinning ? winningImgSrc : imgSrc[cell.content]"
        @dropState="cell.content === 0 ? null : 'down'">
