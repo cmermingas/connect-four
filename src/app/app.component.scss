@@ -17,7 +17,7 @@ h2 {
 .info-panel {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   flex-grow: .5;
