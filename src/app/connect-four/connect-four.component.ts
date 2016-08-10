@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {GameColumnComponent} from "../game-column/game-column.component";
 import {ConnectFour} from "../model/connect-four";
 
@@ -11,6 +11,7 @@ import {ConnectFour} from "../model/connect-four";
 })
 export class ConnectFourComponent implements OnInit {
   @Input() game:ConnectFour;
+  @Output() columnClicked = new EventEmitter();
 
   constructor() { }
 
@@ -18,11 +19,7 @@ export class ConnectFourComponent implements OnInit {
     console.log(this.game);
   }
 
-  pieceAdded(pieceAddedAt: {column: number, cell: number}) {
-    if (pieceAddedAt) {
-      this.game.advanceTurn();
-      let hasWinner = this.game.hasWinner(pieceAddedAt.column, pieceAddedAt.cell);
-    }
+  _columnClicked(e) {
+    this.columnClicked.emit(e);
   }
-
 }

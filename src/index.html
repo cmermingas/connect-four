@@ -14,9 +14,6 @@
 <body>
   <app-root>Loading...</app-root>
 
-    <!-- This shouldn't be here! -->
-  <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script>
-
   {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
     {{/each}}

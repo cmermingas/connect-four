@@ -1,21 +1,46 @@
-export enum CellContent {Empty, Player1, Player2, Winning}
+// export enum CellContent {Empty, Player1, Player2, Winning}
 
-type CellCoordinateType = {column:number, cell:number};
+type CellCoordinateType = {column: number, cell: number};
 const WINNING_LENGTH = 4;
 
 export class GameCell {
-  constructor(public content = CellContent.Empty) {}
+  isWinning: boolean = false;
+
+  constructor(public content = 0) {}
 
   setContent(newContent) {
     this.content = newContent;
   }
+
+  setWinning() {
+    this.isWinning = true;
+  }
+
+  copy(): GameCell {
+    let result = new GameCell(this.content);
+    result.isWinning = this.isWinning;
+    return result;
+  }
+
+  toJSON(): any {
+    return {
+      isWinning: this.isWinning,
+      content: this.content
+    };
+  }
+
+  static fromJSON(json: any): GameCell {
+    let result = new GameCell(json.content);
+    result.isWinning = json.isWinning;
+    return result;
+  }
 }
 
 export class GameColumn {
-  public cells:GameCell[];
+  public cells: GameCell[];
   private currentIndex;
 
-  constructor(public index:number, private cellCount:any, public game:ConnectFour) {
+  constructor(public index: number, private cellCount: any) {
     this.cells = [];
     this.currentIndex = cellCount - 1;
     for (let i = 0; i < cellCount; i++) {
@@ -23,12 +48,38 @@ export class GameColumn {
     }
   }
 
-  addPieceForCurrentPlayer():CellCoordinateType {
+  copy(): GameColumn {
+    let result = new GameColumn(this.index, this.cellCount);
+    result.cells = this.cells.map((v, i, a) => v.copy());
+    result.currentIndex = this.currentIndex;
+    return result;
+  }
+
+  toJSON(): any {
+    return {
+      index: this.index,
+      cellCount: this.cellCount,
+      cells: this.cells.map((v, i, a) => v.toJSON()),
+      currentIndex: this.currentIndex
+    }
+  }
+
+  static fromJSON(json: any): GameColumn {
+    let result = new GameColumn(json.index, json.cellCount);
+    result.currentIndex = json.currentIndex;
+    result.cells = json.cells.map((v, i, a) => GameCell.fromJSON(v));
+    return result;
+  }
+
+
+  isFull(): boolean {
+    return this.currentIndex < 0;
+  }
+
+  addPiece(player: number): CellCoordinateType {
     let pieceAdded = null;
     if (this.currentIndex >= 0) {
-      // I don't want to make any assumption about the actual numeric values in the CellContent Enum
-      let cellContent = this.game.currentPlayer == 1 ? CellContent.Player1 : CellContent.Player2;
-      this.cells[this.currentIndex].setContent(cellContent);
+      this.cells[this.currentIndex].setContent(player);
       pieceAdded = {column: this.index, cell: this.currentIndex};
       this.currentIndex--;
     }
@@ -38,40 +89,96 @@ export class GameColumn {
 }
 
 export class ConnectFour {
-  columns:GameColumn[];
-  currentPlayer:number;
-  winner:number;
-  gameOver:boolean;
+  columns: GameColumn[];
+  currentPlayer: number;
+  winner: number;
+  gameOver: boolean;
+  lastMove: CellCoordinateType;
+  moveCount: number = 0;
 
-  constructor(public columnCount:number, public cellsPerColumn:number) {
+  constructor(public columnCount: number, public cellsPerColumn: number) {
     this.reset();
+  }
+
+  copy() {
+    let result = new ConnectFour(this.columnCount, this.cellsPerColumn);
+    result.columns = this.columns.map((v, i, a) => {
+      let colCopy = v.copy();
+      return colCopy;
+    });
+    result.currentPlayer = this.currentPlayer;
+    result.winner = this.winner;
+    result.gameOver = this.gameOver;
+    result.lastMove = {column: this.lastMove.column, cell: this.lastMove.cell};
+    result.moveCount = this.moveCount;
+    return result;
+  }
+
+  toJSON(): any {
+    return {
+      columnCount: this.columnCount,
+      cellsPerColumn: this.cellsPerColumn,
+      columns: this.columns.map((v, i, a) => v.toJSON()),
+      currentPlayer: this.currentPlayer,
+      winner: this.winner,
+      gameOver: this.gameOver,
+      lastMove: this.lastMove,
+      moveCount: this.moveCount
+    }
+  }
+
+  static fromJSON(json: any): ConnectFour {
+    let result = new ConnectFour(json.columnCount, json.cellsPerColumn);
+    result.columns = json.columns.map((v, i, a) => GameColumn.fromJSON(v));
+    result.currentPlayer = json.currentPlayer;
+    result.winner = json.winner;
+    result.gameOver = json.gameOver;
+    result.lastMove = json.lastMove;
+    result.moveCount = json.moveCount;
+    return result;
   }
 
   reset() {
     let result = [];
     for (let i = 0; i < this.columnCount; i++) {
-      result.push(new GameColumn(i, this.cellsPerColumn, this));
+      let column = new GameColumn(i, this.cellsPerColumn);
+      result.push(column);
     }
 
     this.columns = result;
     this.currentPlayer = 1;
     this.winner = 0;
     this.gameOver = false;
+    this.moveCount = 0;
+    this.lastMove = {column: -1, cell: -1};
   }
 
-  advanceTurn() {
-    if (!this.gameOver) {
-      this.currentPlayer = this.currentPlayer % 2 + 1;
+
+  playAtColumn(index: number) {
+    if (!this.gameOver && index >= 0 && index < this.columnCount) {
+      let pieceAdded = this.columns[index].addPiece(this.currentPlayer)
+      if (pieceAdded) {
+        this.moveCount++;
+        this.lastMove = pieceAdded;
+        this.currentPlayer = this.currentPlayer % 2 + 1;
+        this.checkWinner();
+        this.gameOver = this.gameOver || this.moveCount > this.columnCount * this.cellsPerColumn;
+      }
     }
   }
 
-  getCellAt(c:CellCoordinateType):GameCell {
+  getCellAt(c: CellCoordinateType): GameCell {
     let column = this.columns[c.column];
     let result = column ? column.cells[c.cell] : null;
     return result ? result : null;
   }
 
-  getWinners(sequence:GameCell[], forPLayer:number):GameCell[] {
+  getAvailableMoves(): GameColumn[] {
+    let result = this.columns.filter((v, i, a) => !v.isFull());
+    return result;
+  }
+
+  getWinnersInSequence(sequence: GameCell[], forPLayer: number): GameCell[] {
     let result = [];
     let currentIndex = sequence.findIndex((e) => e.content === forPLayer);
     let iteration = 1;
@@ -89,7 +196,7 @@ export class ConnectFour {
     return result;
   }
 
-  getRow(row:number, _fromColumn:number, _toColumn:number):GameCell[] {
+  getRow(row: number, _fromColumn: number, _toColumn: number): GameCell[] {
     let fromColumn = Math.max(Math.min(_fromColumn, _toColumn), 0);
     let toColumn = Math.min(Math.max(_fromColumn, _toColumn), this.columnCount - 1);
     let result = [];
@@ -104,7 +211,7 @@ export class ConnectFour {
     return result;
   }
 
-  getColumn(column:number, _fromRow:number, _toRow:number):GameCell[] {
+  getColumn(column: number, _fromRow: number, _toRow: number): GameCell[] {
     let fromRow = Math.max(Math.min(_fromRow, _toRow), 0);
     let toRow = Math.min(Math.max(_fromRow, _toRow), this.cellsPerColumn - 1);
     let result = [];
@@ -119,7 +226,7 @@ export class ConnectFour {
     return result;
   }
 
-  getDiagonal(fromCell:CellCoordinateType, toCell:CellCoordinateType):GameCell[] {
+  getDiagonal(fromCell: CellCoordinateType, toCell: CellCoordinateType): GameCell[] {
     let result = [];
 
     if (toCell.column !== fromCell.column) {
@@ -141,8 +248,11 @@ export class ConnectFour {
     return result;
   }
 
-  hasWinner(column:number, cell:number):boolean {
-    let piecePlaced = this.getCellAt({column: column, cell: cell}).content;
+  checkWinner() {
+    let column = this.lastMove.column;
+    let cell = this.lastMove.cell;
+
+    let player = this.getCellAt({column: column, cell: cell}).content;
     let delta = WINNING_LENGTH - 1;
 
     let row = this.getRow(cell, column - delta, column + delta);
@@ -156,20 +266,18 @@ export class ConnectFour {
       {column: (column + delta), cell: (cell + delta)});
 
     let winners = [
-      ...this.getWinners(row, piecePlaced),
-      ...this.getWinners(col, piecePlaced),
-      ...this.getWinners(swToNe, piecePlaced),
-      ...this.getWinners(nWToSe, piecePlaced)];
+      ...this.getWinnersInSequence(row, player),
+      ...this.getWinnersInSequence(col, player),
+      ...this.getWinnersInSequence(swToNe, player),
+      ...this.getWinnersInSequence(nWToSe, player)];
 
     let winnerFound = winners.length > 0;
 
     if (winnerFound) {
-      winners.forEach((v, i, a) => v.content = CellContent.Winning);
+      winners.forEach((v, i, a) => v.setWinning());
       this.gameOver = true;
       this.currentPlayer = 0;
-      this.winner = piecePlaced;
+      this.winner = player;
     }
-
-    return winnerFound;
   }
 }

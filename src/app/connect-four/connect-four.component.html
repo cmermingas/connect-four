@@ -1,4 +1,4 @@
 <game-column *ngFor="let col of game.columns"
              [gameColumn]="col"
              [gameOver]="game.gameOver"
-             (columnClicked)="pieceAdded($event)"></game-column>
+             (columnClicked)="_columnClicked($event)"></game-column>

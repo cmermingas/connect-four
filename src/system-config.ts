@@ -9,12 +9,12 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-  // 'web-animations': 'vendor/web-animation-js/web-animations-min.js'
+  'web-animations-js': 'vendor/web-animations-js'
 };
 
 /** User packages configuration. */
 const packages: any = {
-  // 'web-animations': {format: 'global'}
+  'web-animations-js': {main: 'web-animations.min.js'}
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
