@@ -1,8 +1,0 @@
-:host {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  border: 5px solid #a9a9a9;
-  box-shadow: 2px 2px 3px black;
-  border-radius: 10px;
-  background: #d3d3d3; }
