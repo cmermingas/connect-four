@@ -4,8 +4,6 @@ I have been working on this app to learn [Angular 2](https://github.com/angular/
 
 This project was generated with CLI version 1.0.0-beta.11-webpack.2.
 
-I might move this repository to replace [this one](https://github.com/cmermingas/connect-four), which is a previous version that used the SystemJS-based CLI.
-
 All feedback is welcome.
 
 # Notes
