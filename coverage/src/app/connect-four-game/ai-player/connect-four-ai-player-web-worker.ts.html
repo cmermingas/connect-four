@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/connect-four-game/ai-player/connect-four-ai-player-web-worker.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">src/app/connect-four-game/ai-player/</a> connect-four-ai-player-web-worker.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.25% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>19/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.23% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/43</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {ConnectFourAiPlayer, HighestConcentrationHeuristic} from './connect-four-ai-player';
+import {ConnectFourGameModel} from '../model/connect-four-game-model';
+&nbsp;
+export type PerformMove = (number, ConnectFourAiPlayerWebWorker) =&gt; void;
+enum Command {Play, Plan, Reset, PlayDone, PlanDone}
+interface WebWorkerMessage {
+  command: Command;
+  data: any;
+}
+&nbsp;
+// This class is to be used by the client side (to interface with the web worker)
+&nbsp;
+export class ConnectFourAiPlayerWebWorker {
+  public <span class="cstat-no" title="statement not covered" >terminated = false;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >  constructor(public <span class="cstat-no" title="statement not covered" >game: ConnectFourGameModel,</span></span>
+              public <span class="cstat-no" title="statement not covered" >myNumber: number,</span>
+              public <span class="cstat-no" title="statement not covered" >worker: Worker,</span>
+              public <span class="cstat-no" title="statement not covered" >performMove: PerformMove)</span> {
+<span class="cstat-no" title="statement not covered" >    worker.onmessage = <span class="fstat-no" title="function not covered" >(event: MessageEvent)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.processMessage(event.data);</span></span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  processMessage(message: WebWorkerMessage)</span> {
+<span class="cstat-no" title="statement not covered" >    switch (message.command) {</span>
+      case Command.PlayDone:
+<span class="cstat-no" title="statement not covered" >        this.turnTaken(message.data);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case Command.PlanDone: {
+<span class="cstat-no" title="statement not covered" >        if (this.game.currentPlayer === this.myNumber) {</span>
+<span class="cstat-no" title="statement not covered" >          this.takeTurn();</span>
+        }
+      }
+    }
+&nbsp;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  takeTurn() {</span>
+<span class="cstat-no" title="statement not covered" >    let message = {command: Command.Play, data: this.game.toJSON()};</span>
+<span class="cstat-no" title="statement not covered" >    this.worker.postMessage(message);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  turnTaken(data: any)</span> {
+<span class="cstat-no" title="statement not covered" >    if (!this.terminated) {</span>
+<span class="cstat-no" title="statement not covered" >      this.performMove(data, this);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  reset(_game: ConnectFourGameModel)</span> {
+<span class="cstat-no" title="statement not covered" >    this.game = _game;</span>
+<span class="cstat-no" title="statement not covered" >    let message = {command: Command.Reset, data: null};</span>
+<span class="cstat-no" title="statement not covered" >    this.worker.postMessage(message);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  terminate() {</span>
+<span class="cstat-no" title="statement not covered" >    this.worker.terminate();</span>
+<span class="cstat-no" title="statement not covered" >    this.terminated = true;</span>
+  }
+}
+&nbsp;
+// This code runs on the web worker side:
+&nbsp;
+const _player = new ConnectFourAiPlayer(new HighestConcentrationHeuristic());
+&nbsp;
+onmessage = <span class="fstat-no" title="function not covered" >(event: MessageEvent)</span>: any =&gt; {
+<span class="cstat-no" title="statement not covered" >  let message = &lt;WebWorkerMessage&gt;(event.data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  switch (message.command) {</span>
+    case Command.Play:
+      // Play this turn
+<span class="cstat-no" title="statement not covered" >      let game = ConnectFourGameModel.fromJSON(message.data);</span>
+<span class="cstat-no" title="statement not covered" >      let result = _player.play(game);</span>
+<span class="cstat-no" title="statement not covered" >      let response = {command: Command.PlayDone, data: result};</span>
+<span class="cstat-no" title="statement not covered" >      postMessage(response, undefined);</span>
+&nbsp;
+      // Plan next turn
+<span class="cstat-no" title="statement not covered" >      game.playAtColumn(result);</span>
+<span class="cstat-no" title="statement not covered" >      _player.plan(game);</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+    case Command.Reset:
+<span class="cstat-no" title="statement not covered" >      _player.reset();</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+  }
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 17 2016 11:17:01 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

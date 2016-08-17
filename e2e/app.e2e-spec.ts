@@ -1,10 +1,10 @@
-import { ConnectFourPage } from './app.po';
+import { ConnectFourWebpackPage } from './app.po';
 
-describe('connect-four App', function() {
-  let page: ConnectFourPage;
+describe('connect-four-webpack App', function() {
+  let page: ConnectFourWebpackPage;
 
   beforeEach(() => {
-    page = new ConnectFourPage();
+    page = new ConnectFourWebpackPage();
   });
 
   it('should display message saying app works', () => {

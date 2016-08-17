@@ -1,47 +1,66 @@
 # Connect Four
 
-I made this little game to learn and practice working with [Angular 2](https://angular.io/) and [Angular CLI](https://cli.angular.io). I used CLI version 1.0.0-beta.10.
+I have been working on this app to learn [Angular 2](https://github.com/angular/angular) and [Angular CLI](https://github.com/angular/angular-cli).
 
-**The game is live at <https://cmermingas.github.io/connect-four/>**
+This project was generated with CLI version 1.0.0-beta.11-webpack.2.
 
-Check it out, look at the code, and send me your feedback.
+I might move this repository to replace [this one](https://github.com/cmermingas/connect-four), which is a previous version that used the SystemJS-based CLI.
 
-## Some Thoughts
+All feedback is welcome.
 
-I organized the application like this:
+# Notes
 
-  * [App Component](https://github.com/cmermingas/connect-four/blob/master/src/app/app.component.ts)
-    * [Connect Four Component](https://github.com/cmermingas/connect-four/tree/master/src/app/connect-four)
-      * [Column Component](https://github.com/cmermingas/connect-four/tree/master/src/app/game-column)
-        * ~~Cell Component~~
+## General Architecture
 
-After several refactoring cycles, I decided to remove the Cell Component, since it wasn't doing anything substantial.  
+It's very simple:
 
-I made the model mirror that:
+```
+connect-four-game
+   ai-player
+      connect-four-ai-player.ts             // A "robot" that plays the game
+      connect-four-ai-player-web-worker.ts  // A wrapper for the robot to run it in a web worker.
+                                            // It basically implements the messaging protocol between the app and the web worker.
+    
+   model
+      connect-four-game-model.spec.ts  // Tests for the model 
+      connect-four-game-model.ts       // Game model
+  
+  
+app.component // What you see on the screen and interact with
+```
 
-  * Connect Four
-    * Column
-      * Cell (with a numeric property that indicates the content of the cell)
+### TODO
 
-The model is all in [one file](https://github.com/cmermingas/connect-four/blob/master/src/app/model/connect-four.ts)
+- Convert the `connect-four-game` folder into an NgModule.
+- Add animations (they are there in the code but they don't behave as expected).
+- Maybe refactor some of the components, to simplify `app.component`.
+- Use web workers the Angular 2 way. Challenge: the documentation that I've found is outdated. 
 
-I decided to keep the Cell model, unlike the Cell Component, because I noticed that if I stored the cell state (a number) directly in the column, then the whole column flickers when a single number changes. My guess is that the ngFor in the Column Component runs the whole list whenever one item changes (?).
+## To Deploy to Github Pages
 
-When it comes to styling, the CSS files seem a bit scattered and coupled. For example: if I define a certain color scheme in a parent component, I have to redefine it in other descedant components as well. I can imagine the challenge compounding in large application.       
+Currently, deploying to Github Pages via the CLI is not working for me. So, I am doing it manually, guided by [these instructions](https://help.github.com/articles/creating-project-pages-manually/).
 
-## Issues
-* The images included in the repo are not correctly deployed to Github Pages. I had to change the code to point to the images in the repo itself. Not exactly what I wanted.
+1. Clone the master branch:
 
-## Next Steps
-Main:
-* An algorithm that plays the game.
-* Undo.
-* A way to play over the network. Ideally without a server in the middle.
-* Tinker with different models and see how they affect (or not) the components' behavior.
-* Support more than two players.
-* Force it to display in landscape mode, regardless of how the device is held.
-* Fill in the test specs.
+```
+git clone https://github.com/cmermingas/connect-four-webpack.git
+cd connect-four-webpack
+git checkout --orphan gh-pages
+git rm rf .
+```
 
-Side dishes:
-* Better images/look.
-* Or no images at all pure CSS. The only reason I used images was to be able to make it responsive.
+2. Build the project for prod in a separate repository. *Why so many Webpack warnings!?*
+
+```
+ng build --prod
+```
+
+3. Copy the built files where the gh-pages branch is. Also copy the images (they don't seem to be copied by `ng build --prod`). 
+ 
+4. Change `base href="/"` to `base href="/connect-four-webpack/"` in index.html
+
+5. Finally, push to Github:
+ 
+```
+git push origin gh-pages
+```

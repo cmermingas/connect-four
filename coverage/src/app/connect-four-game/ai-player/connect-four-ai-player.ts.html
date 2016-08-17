@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/connect-four-game/ai-player/connect-four-ai-player.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">src/app/connect-four-game/ai-player/</a> connect-four-ai-player.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.37% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>24/91</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.95% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/76</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">38.46% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">19.23% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>15/78</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {ConnectFourGameModel} from '../model/connect-four-game-model';
+&nbsp;
+const MAX_DEPTH = 5;
+enum MoveType {Offensive, Defensive, Neutral, Stupid}
+interface MinimaxResult {
+  move: number;
+  score: number;
+  moveType: MoveType;
+}
+&nbsp;
+abstract class FilterMovesHeuristic {
+  abstract filter(moves: number[], game: ConnectFourGameModel): number[];
+}
+&nbsp;
+// This heuristic selects the available moves that are on top of or next to existing pieces
+export class HighestConcentrationHeuristic extends FilterMovesHeuristic {
+<span class="fstat-no" title="function not covered" >  filter(moves: number[], game: ConnectFourGameModel)</span>: number[] {
+<span class="cstat-no" title="statement not covered" >    const concentration = game.columnIndex.map(<span class="fstat-no" title="function not covered" >item </span>=&gt; <span class="cstat-no" title="statement not covered" >game.cellsPerColumn - item - 1)</span>;</span>
+<span class="cstat-no" title="statement not covered" >    let result = moves.filter(<span class="fstat-no" title="function not covered" >item </span>=&gt;</span>
+<span class="cstat-no" title="statement not covered" >      concentration[item] &gt; 0 ||</span>
+      item &gt; 0 &amp;&amp; concentration[item - 1] &gt; 0 ||
+      item &lt; game.columns.length - 1 &amp;&amp; concentration[item + 1] &gt; 0
+    );
+<span class="cstat-no" title="statement not covered" >    return (result.length &gt; 0 ? result : [moves[Math.floor(moves.length / 2)]]);</span>
+  }
+}
+&nbsp;
+export class ConnectFourAiPlayer {
+  private isThinking = false;
+  private plannedMoves: number[];
+&nbsp;
+  constructor(<span class="missing-if-branch" title="if path not taken" >I</span>public heuristic: FilterMovesHeuristic = null) {}
+&nbsp;
+  // This is the function to be called to get the move for the current player
+<span class="fstat-no" title="function not covered" >  play(gameState: ConnectFourGameModel)</span>: number {
+<span class="cstat-no" title="statement not covered" >    if (!this.isThinking) {</span>
+<span class="cstat-no" title="statement not covered" >      this.isThinking = true;</span>
+<span class="cstat-no" title="statement not covered" >      let result;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (this.plannedMoves &amp;&amp; this.plannedMoves[gameState.lastMove.column] !== null) {</span>
+        // console.log('Robot picking up planned move');
+<span class="cstat-no" title="statement not covered" >        result = this.plannedMoves[gameState.lastMove.column];</span>
+      } else {
+        // console.log('Robot thinking current move');
+<span class="cstat-no" title="statement not covered" >        let bestMove = this._minimaxMove(gameState, MAX_DEPTH, gameState.currentPlayer);</span>
+<span class="cstat-no" title="statement not covered" >        result = bestMove.move;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.plannedMoves = null;</span>
+<span class="cstat-no" title="statement not covered" >      this.isThinking = false;</span>
+<span class="cstat-no" title="statement not covered" >      return result;</span>
+    }
+  }
+&nbsp;
+  // This function is used to plan the next move.
+  // The game should be in a state such that the opponent is the current player.
+  // We'll consider removing this assumption. But for now, let's go...
+<span class="fstat-no" title="function not covered" >  plan(gameState: ConnectFourGameModel)</span> {
+<span class="cstat-no" title="statement not covered" >    if (!this.isThinking &amp;&amp; gameState) {</span>
+      // console.log('*** Robot planning ***', gameState);
+<span class="cstat-no" title="statement not covered" >      this.isThinking = true;</span>
+<span class="cstat-no" title="statement not covered" >      this.plannedMoves = gameState.columns.map(<span class="fstat-no" title="function not covered" >item </span>=&gt; <span class="cstat-no" title="statement not covered" >null)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      let availableMoves = this.heuristic.filter(gameState.getAvailableMoves(), gameState);</span>
+<span class="cstat-no" title="statement not covered" >      for (<span class="cstat-no" title="statement not covered" >let move </span>of availableMoves) {</span>
+<span class="cstat-no" title="statement not covered" >        let gameCopy = gameState.copy();</span>
+<span class="cstat-no" title="statement not covered" >        gameCopy.playAtColumn(move);</span>
+<span class="cstat-no" title="statement not covered" >        let bestMove = this._minimaxMove(gameCopy, MAX_DEPTH, gameCopy.currentPlayer);</span>
+<span class="cstat-no" title="statement not covered" >        this.plannedMoves[move] = bestMove.move;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.isThinking = false;</span>
+      // console.log('Done planning', this.plannedMoves);
+    }
+  }
+&nbsp;
+  // Simple implementation of the minimax algorithm to find the best move
+<span class="fstat-no" title="function not covered" >  _minimaxMove(game: ConnectFourGameModel, depthLevel: number, player: number)</span>: MinimaxResult {
+<span class="cstat-no" title="statement not covered" >    let availableMoves = game.getAvailableMoves();</span>
+<span class="cstat-no" title="statement not covered" >    if (this.heuristic) {</span>
+<span class="cstat-no" title="statement not covered" >      availableMoves = this.heuristic.filter(availableMoves, game);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (game.gameOver || depthLevel === 0 || availableMoves.length === 0) {</span>
+      // We give a heavier score to "sooner" results
+      // (e.g. losing in this move is heavier than winning in the next one)
+<span class="cstat-no" title="statement not covered" >      let score = 0;</span>
+<span class="cstat-no" title="statement not covered" >      if (game.winner === player) {</span>
+<span class="cstat-no" title="statement not covered" >        score = depthLevel + 1; </span>// 1 * (depthLevel + 1)
+      } else <span class="cstat-no" title="statement not covered" >if (game.winner) {</span>
+<span class="cstat-no" title="statement not covered" >        score = -depthLevel - 1; </span>// -1 * (depthLevel + 1)
+      }
+<span class="cstat-no" title="statement not covered" >      return {move: null, score: score, moveType: MoveType.Neutral};</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let bestScore, bestMove;</span>
+<span class="cstat-no" title="statement not covered" >    let losingMoves = 0, winningMoves = 0, neutralMoves = 0, offensiveMoves = 0;</span>
+<span class="cstat-no" title="statement not covered" >    let fn = game.currentPlayer === player ? Math.max : Math.min;</span>
+&nbsp;
+    // This is used for debugging, if needed
+    // let moves_with_score = '';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (<span class="cstat-no" title="statement not covered" >let move </span>of availableMoves) {</span>
+<span class="cstat-no" title="statement not covered" >      let gameCopy = game.copy();</span>
+<span class="cstat-no" title="statement not covered" >      gameCopy.playAtColumn(move);</span>
+<span class="cstat-no" title="statement not covered" >      let miniMaxMove = this._minimaxMove(gameCopy, depthLevel - 1, player);</span>
+<span class="cstat-no" title="statement not covered" >      let score = miniMaxMove.score;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      losingMoves +=</span>
+        (game.currentPlayer === player &amp;&amp; score &lt; 0 || game.currentPlayer !== player &amp;&amp; score &gt; 0) ? 1 : 0;
+<span class="cstat-no" title="statement not covered" >      winningMoves +=</span>
+        (game.currentPlayer === player &amp;&amp; score &gt; 0 || game.currentPlayer !== player &amp;&amp; score &lt; 0) ? 1 : 0;
+<span class="cstat-no" title="statement not covered" >      neutralMoves += (score === 0) ? 1 : 0;</span>
+<span class="cstat-no" title="statement not covered" >      offensiveMoves += (miniMaxMove.moveType === MoveType.Defensive) ? 1 : 0;</span>
+&nbsp;
+      // if (depthLevel === MAX_DEPTH) {
+      //   moves_with_score += (moves_with_score.length &gt; 0 ? ' , [' : '[') + move + ', ' + score + ']';
+      // }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (bestScore === undefined ||</span>
+        bestScore !== fn(bestScore, score) ||
+        (bestScore === score &amp;&amp; Math.random() &gt;= .8)) {
+<span class="cstat-no" title="statement not covered" >        bestScore = score;</span>
+<span class="cstat-no" title="statement not covered" >        bestMove = move;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let moveType = MoveType.Neutral;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (offensiveMoves &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      moveType = MoveType.Offensive;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (bestScore === 0 &amp;&amp; losingMoves &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      moveType = MoveType.Defensive;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (bestScore === 0 &amp;&amp; winningMoves &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      moveType = MoveType.Stupid;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (game.currentPlayer === player &amp;&amp; bestScore &gt; 0 &amp;&amp; losingMoves + neutralMoves &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      moveType = MoveType.Offensive;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (game.currentPlayer !== player &amp;&amp; bestScore &lt; 0 &amp;&amp; losingMoves + neutralMoves &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      moveType = MoveType.Offensive;</span>
+    }
+&nbsp;
+    /*
+    if (depthLevel === MAX_DEPTH) {
+      console.log('Evaluated: ', moves_with_score);
+      console.log('Chose: [' + bestMove + ', ' + bestScore + '] ' + MoveType[moveType]);
+    }
+    */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {move: bestMove, score: bestScore, moveType: moveType};</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  reset() {</span>
+<span class="cstat-no" title="statement not covered" >    this.plannedMoves = null;</span>
+<span class="cstat-no" title="statement not covered" >    this.isThinking = false;</span>
+  }
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 17 2016 11:17:01 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

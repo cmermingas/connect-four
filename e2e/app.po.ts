@@ -1,4 +1,4 @@
-export class ConnectFourPage {
+export class ConnectFourWebpackPage {
   navigateTo() {
     return browser.get('/');
   }

@@ -2,29 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ConnectFour</title>
+  <title>Connect Four</title>
   <base href="/">
 
-  {{#unless environment.production}}
-  <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
-  {{/unless}}
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 </head>
 <body>
   <app-root>Loading...</app-root>
-
-  <!-- This shouldn't be here! It works in dev but not in prod -->
-  <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script>
-
-  {{#each scripts.polyfills}}
-    <script src="{{.}}"></script>
-    {{/each}}
-    <script>
-      System.import('system-config.js').then(function () {
-        System.import('main');
-      }).catch(console.error.bind(console));
-    </script>
-
 </body>
 </html>
