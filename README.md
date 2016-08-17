@@ -4,8 +4,6 @@ I have been working on this app to learn [Angular 2](https://github.com/angular/
 
 This project was generated with CLI version 1.0.0-beta.11-webpack.2.
 
-I might move this repository to replace [this one](https://github.com/cmermingas/connect-four), which is a previous version that used the SystemJS-based CLI.
-
 All feedback is welcome.
 
 # Notes
@@ -43,8 +41,8 @@ Currently, deploying to Github Pages via the CLI is not working for me. So, I am
 1. Clone the master branch:
 
 ```
-git clone https://github.com/cmermingas/connect-four-webpack.git
-cd connect-four-webpack
+git clone https://github.com/cmermingas/connect-four.git
+cd connect-four
 git checkout --orphan gh-pages
 git rm rf .
 ```
@@ -57,7 +55,7 @@ ng build --prod
 
 3. Copy the built files where the gh-pages branch is. Also copy the images (they don't seem to be copied by `ng build --prod`). 
  
-4. Change `base href="/"` to `base href="/connect-four-webpack/"` in index.html
+4. Change `base href="/"` to `base href="/connect-four/"` in index.html
 
 5. Finally, push to Github:
  
