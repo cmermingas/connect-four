@@ -44,7 +44,7 @@ Currently, deploying to Github Pages via the CLI is not working for me. So, I am
 git clone https://github.com/cmermingas/connect-four.git
 cd connect-four
 git checkout --orphan gh-pages
-git rm rf .
+git rm -rf .
 ```
 
 2. Build the project for prod in a separate repository. *Why so many Webpack warnings!?*
