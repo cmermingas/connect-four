@@ -1,6 +1,6 @@
 import {ConnectFourGameModel} from '../model/connect-four-game-model';
 
-const MAX_DEPTH = 5;
+const MAX_DEPTH = 4;
 enum MoveType {Offensive, Defensive, Neutral, Stupid}
 interface MinimaxResult {
   move: number;
@@ -73,20 +73,21 @@ export class ConnectFourAiPlayer {
   }
 
   // Simple implementation of the minimax algorithm to find the best move
-  _minimaxMove(game: ConnectFourGameModel, depthLevel: number, player: number): MinimaxResult {
+  _minimaxMove(game: ConnectFourGameModel, maxDepth: number, player: number, currentDepth: number = null): MinimaxResult {
+    currentDepth = currentDepth === null ? maxDepth : currentDepth;
     let availableMoves = game.getAvailableMoves();
     if (this.heuristic) {
       availableMoves = this.heuristic.filter(availableMoves, game);
     }
 
-    if (game.gameOver || depthLevel === 0 || availableMoves.length === 0) {
+    if (game.gameOver || currentDepth === 0 || availableMoves.length === 0) {
       // We give a heavier score to "sooner" results
       // (e.g. losing in this move is heavier than winning in the next one)
       let score = 0;
       if (game.winner === player) {
-        score = depthLevel + 1; // 1 * (depthLevel + 1)
+        score = currentDepth + 1; // 1 * (depthLevel + 1)
       } else if (game.winner) {
-        score = -depthLevel - 1; // -1 * (depthLevel + 1)
+        score = -currentDepth - 1; // -1 * (depthLevel + 1)
       }
       return {move: null, score: score, moveType: MoveType.Neutral};
     }
@@ -101,7 +102,7 @@ export class ConnectFourAiPlayer {
     for (let move of availableMoves) {
       let gameCopy = game.copy();
       gameCopy.playAtColumn(move);
-      let miniMaxMove = this._minimaxMove(gameCopy, depthLevel - 1, player);
+      let miniMaxMove = this._minimaxMove(gameCopy, maxDepth, player, currentDepth - 1);
       let score = miniMaxMove.score;
 
       losingMoves +=
@@ -111,7 +112,7 @@ export class ConnectFourAiPlayer {
       neutralMoves += (score === 0) ? 1 : 0;
       offensiveMoves += (miniMaxMove.moveType === MoveType.Defensive) ? 1 : 0;
 
-      // if (depthLevel === MAX_DEPTH) {
+      // if (currentDepth === MAX_DEPTH) {
       //   moves_with_score += (moves_with_score.length > 0 ? ' , [' : '[') + move + ', ' + score + ']';
       // }
 
@@ -121,8 +122,14 @@ export class ConnectFourAiPlayer {
         bestScore = score;
         bestMove = move;
       }
+      
+      if (currentDepth === maxDepth && gameCopy.gameOver && gameCopy.winner === player) {
+        break;
+      }
     }
 
+
+    // Experimenting with this...
     let moveType = MoveType.Neutral;
 
     if (offensiveMoves > 0) {
@@ -138,7 +145,7 @@ export class ConnectFourAiPlayer {
     }
 
     /*
-    if (depthLevel === MAX_DEPTH) {
+    if (currentDepth === MAX_DEPTH) {
       console.log('Evaluated: ', moves_with_score);
       console.log('Chose: [' + bestMove + ', ' + bestScore + '] ' + MoveType[moveType]);
     }
