@@ -32,7 +32,6 @@ import {ConnectFourGameModel, CellContent, GameCell} from "../model/connect-four
 })
 export class ConnectFourComponent implements OnInit {
     @Input() game: ConnectFourGameModel;
-    // @Input() player1:
     @Output() onColumnClick = new EventEmitter<number>();
 
     IMAGE_FOR_PLAYER = ['img/empty.png', 'img/player1.png', 'img/player2.png'];
@@ -43,21 +42,15 @@ export class ConnectFourComponent implements OnInit {
     ngOnInit() {}
 
     getImageForCell(cell: GameCell): string {
-        if (cell.content === CellContent.Winning) {
-            return this.IMAGE_FOR_WINNER;
-        } else {
-            return this.IMAGE_FOR_PLAYER[cell.content];
-        }
+        return (cell.content === CellContent.Winning) ?
+            this.IMAGE_FOR_WINNER : this.IMAGE_FOR_PLAYER[cell.content];
     }
 
-    getDropStateForCell(cell: GameCell): string {
-        return cell.content === 0 || cell.content === CellContent.Winning ? null : 'down';
+    getDropStateForCell(column: number, cell: number): string {
+        return (column === this.game.lastMove.column && cell === this.game.lastMove.cell) ? 'down' : null;
     }
 
     clickColumn(column: number) {
         this.onColumnClick.emit(column);
-        // if (!this.game.gameOver && !this.robotPlayers[this.game.currentPlayer]) {
-        //     this.performMove(column);
-        // }
-    }
+    }z
 }

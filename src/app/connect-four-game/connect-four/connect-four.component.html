@@ -1,6 +1,9 @@
 <div class="game">
-  <div class="column" *ngFor="let column of game.columns; let columnIndex = index" (click)="clickColumn(columnIndex)">
+  <div class="column" *ngFor="let column of game.columns; let columnIndex = index"
+       (click)="clickColumn(columnIndex)">
     <!--{{columnIndex}}-->
-      <img *ngFor="let cell of column" src="{{getImageForCell(cell)}}" [@dropState]="getDropStateForCell(cell)">
+      <img *ngFor="let cell of column; let cellIndex = index"
+           src="{{getImageForCell(cell)}}"
+           [@dropState]="getDropStateForCell(columnIndex, cellIndex)">
   </div>
 </div>

@@ -1,3 +1,5 @@
+// import {EventEmitter} from '@angular/core';
+
 export type GameCoordinateType = {column: number, cell: number};
 
 const WINNING_LENGTH = 4;
@@ -15,6 +17,7 @@ export class ConnectFourGameModel {
     lastMove: GameCoordinateType;
     columns: GameCell[][];
     columnIndex: number[];
+    // turnAdvanced = new EventEmitter<number>();
 
     static fromJSON(jsonData: any): ConnectFourGameModel {
         let result = new ConnectFourGameModel(jsonData.columnCount, jsonData.cellsPerColumn);
