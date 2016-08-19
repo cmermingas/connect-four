@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">26.37% </span>
+        <span class="strong">25.26% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/91</span>
+        <span class='fraction'>24/95</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.95% </span>
+        <span class="strong">3.53% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/76</span>
+        <span class='fraction'>3/85</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">38.46% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>5/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.23% </span>
+        <span class="strong">18.52% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>15/78</span>
+        <span class='fraction'>15/81</span>
       </div>
     </div>
   </div>
@@ -198,7 +198,12 @@
 153
 154
 155
-156</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+156
+157
+158
+159
+160
+161</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">2×</span>
@@ -277,25 +282,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -306,6 +296,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -320,6 +326,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,7 +365,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {ConnectFourGameModel} from '../model/connect-four-game-model';
 &nbsp;
-const MAX_DEPTH = 5;
+const MAX_DEPTH = 4;
 enum MoveType {Offensive, Defensive, Neutral, Stupid}
 interface MinimaxResult {
   move: number;
@@ -428,20 +438,21 @@ export class ConnectFourAiPlayer {
   }
 &nbsp;
   // Simple implementation of the minimax algorithm to find the best move
-<span class="fstat-no" title="function not covered" >  _minimaxMove(game: ConnectFourGameModel, depthLevel: number, player: number)</span>: MinimaxResult {
+<span class="fstat-no" title="function not covered" >  _minimaxMove(game: ConnectFourGameModel, maxDepth: number, player: number, <span class="cstat-no" title="statement not covered" >currentDepth: number = null)</span></span>: MinimaxResult {
+<span class="cstat-no" title="statement not covered" >    currentDepth = currentDepth === null ? maxDepth : currentDepth;</span>
 <span class="cstat-no" title="statement not covered" >    let availableMoves = game.getAvailableMoves();</span>
 <span class="cstat-no" title="statement not covered" >    if (this.heuristic) {</span>
 <span class="cstat-no" title="statement not covered" >      availableMoves = this.heuristic.filter(availableMoves, game);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (game.gameOver || depthLevel === 0 || availableMoves.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >    if (game.gameOver || currentDepth === 0 || availableMoves.length === 0) {</span>
       // We give a heavier score to "sooner" results
       // (e.g. losing in this move is heavier than winning in the next one)
 <span class="cstat-no" title="statement not covered" >      let score = 0;</span>
 <span class="cstat-no" title="statement not covered" >      if (game.winner === player) {</span>
-<span class="cstat-no" title="statement not covered" >        score = depthLevel + 1; </span>// 1 * (depthLevel + 1)
+<span class="cstat-no" title="statement not covered" >        score = currentDepth + 1; </span>// 1 * (depthLevel + 1)
       } else <span class="cstat-no" title="statement not covered" >if (game.winner) {</span>
-<span class="cstat-no" title="statement not covered" >        score = -depthLevel - 1; </span>// -1 * (depthLevel + 1)
+<span class="cstat-no" title="statement not covered" >        score = -currentDepth - 1; </span>// -1 * (depthLevel + 1)
       }
 <span class="cstat-no" title="statement not covered" >      return {move: null, score: score, moveType: MoveType.Neutral};</span>
     }
@@ -456,7 +467,7 @@ export class ConnectFourAiPlayer {
 <span class="cstat-no" title="statement not covered" >    for (<span class="cstat-no" title="statement not covered" >let move </span>of availableMoves) {</span>
 <span class="cstat-no" title="statement not covered" >      let gameCopy = game.copy();</span>
 <span class="cstat-no" title="statement not covered" >      gameCopy.playAtColumn(move);</span>
-<span class="cstat-no" title="statement not covered" >      let miniMaxMove = this._minimaxMove(gameCopy, depthLevel - 1, player);</span>
+<span class="cstat-no" title="statement not covered" >      let miniMaxMove = this._minimaxMove(gameCopy, maxDepth, player, currentDepth - 1);</span>
 <span class="cstat-no" title="statement not covered" >      let score = miniMaxMove.score;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      losingMoves +=</span>
@@ -466,7 +477,7 @@ export class ConnectFourAiPlayer {
 <span class="cstat-no" title="statement not covered" >      neutralMoves += (score === 0) ? 1 : 0;</span>
 <span class="cstat-no" title="statement not covered" >      offensiveMoves += (miniMaxMove.moveType === MoveType.Defensive) ? 1 : 0;</span>
 &nbsp;
-      // if (depthLevel === MAX_DEPTH) {
+      // if (currentDepth === MAX_DEPTH) {
       //   moves_with_score += (moves_with_score.length &gt; 0 ? ' , [' : '[') + move + ', ' + score + ']';
       // }
 &nbsp;
@@ -476,8 +487,12 @@ export class ConnectFourAiPlayer {
 <span class="cstat-no" title="statement not covered" >        bestScore = score;</span>
 <span class="cstat-no" title="statement not covered" >        bestMove = move;</span>
       }
+<span class="cstat-no" title="statement not covered" >      if (currentDepth === maxDepth &amp;&amp; gameCopy.gameOver &amp;&amp; gameCopy.winner === player) {</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      }
     }
 &nbsp;
+    // Experimenting with this...
 <span class="cstat-no" title="statement not covered" >    let moveType = MoveType.Neutral;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (offensiveMoves &gt; 0) {</span>
@@ -493,7 +508,7 @@ export class ConnectFourAiPlayer {
     }
 &nbsp;
     /*
-    if (depthLevel === MAX_DEPTH) {
+    if (currentDepth === MAX_DEPTH) {
       console.log('Evaluated: ', moves_with_score);
       console.log('Chose: [' + bestMove + ', ' + bestScore + '] ' + MoveType[moveType]);
     }
@@ -514,7 +529,7 @@ export class ConnectFourAiPlayer {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 17 2016 11:29:36 GMT-0400 (EDT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 18 2016 22:32:16 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

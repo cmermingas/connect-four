@@ -6,25 +6,17 @@
          [class.current-player]="game.currentPlayer === 1"
          [class.winner]="game.winner === 1">
       <span>{{playerName[1]}}</span>
-      <img src="{{IMAGE_FOR_PLAYER[1]}}">
+      <img src="img/player1.png">
     </div>
     <div class="player-info switchable-player"
          (click)="switchPlayer(2)"
          [class.current-player]="game.currentPlayer === 2"
          [class.winner]="game.winner === 2">
       <span>{{playerName[2]}}</span>
-      <img src="{{IMAGE_FOR_PLAYER[2]}}">
+      <img src="img/player2.png">
     </div>
     <button (click)="resetGame()">New Game</button>
   </div>
 </div>
 
-<div class="game">
-  <div class="column" *ngFor="let column of game.columns; let columnIndex = index" (click)="clickColumn(columnIndex)">
-    <!--{{columnIndex}}-->
-    <div class="cell" *ngFor="let cell of column">
-      <img src="{{getImageForCell(cell)}}">
-    </div>
-  </div>
-</div>
-<!--<connect-four [game]="game" (columnClicked)="columnClicked($event)"></connect-four>-->
+<connect-four [game]="game" (onColumnClick)="clickColumn($event)"></connect-four>

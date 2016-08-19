@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.07% </span>
+        <span class="strong">94.49% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>111/118</span>
+        <span class='fraction'>120/127</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.64% </span>
+        <span class="strong">88.89% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>39/44</span>
+        <span class='fraction'>40/45</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.24% </span>
+        <span class="strong">96.3% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>20/21</span>
+        <span class='fraction'>26/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.64% </span>
+        <span class="strong">93.81% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>103/110</span>
+        <span class='fraction'>106/113</span>
       </div>
     </div>
   </div>
@@ -244,12 +244,23 @@
 199
 200
 201
-202</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+202
+203
+204
+205
+206
+207
+208
+209</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2444×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -265,7 +276,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,7 +290,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">84×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -303,7 +314,7 @@
 <span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-yes">42×</span>
-<span class="cline-any cline-yes">252×</span>
+<span class="cline-any cline-yes">1764×</span>
 <span class="cline-any cline-yes">252×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -319,7 +330,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -356,6 +367,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">2275×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -450,200 +464,207 @@
 const WINNING_LENGTH = 4;
 export enum CellContent {Empty = 0, Winning = -1}
 &nbsp;
+export class GameCell {
+    constructor(public content: number) {};
+}
+&nbsp;
 export class ConnectFourGameModel {
-  currentPlayer: number;
-  gameOver: boolean;
-  winner: number;
-  moveCount: number;
-  lastMove: GameCoordinateType;
-  columns: any[];
-  columnIndex: number[];
+    currentPlayer: number;
+    gameOver: boolean;
+    winner: number;
+    moveCount: number;
+    lastMove: GameCoordinateType;
+    columns: GameCell[][];
+    columnIndex: number[];
 &nbsp;
-  static fromJSON(jsonData: any): ConnectFourGameModel {
-    let result = new ConnectFourGameModel(jsonData.columnCount, jsonData.cellsPerColumn);
-    result.currentPlayer = jsonData.currentPlayer;
-    result.gameOver = jsonData.gameOver;
-    result.winner = jsonData.winner;
-    result.moveCount = jsonData.moveCount;
-    result.lastMove = {column: jsonData.lastMove.column, cell: jsonData.lastMove.cell};
-    result.columns = jsonData.columns.map(item =&gt; item.slice());
-    result.columnIndex = jsonData.columnIndex.slice();
-    return result;
-  }
-&nbsp;
-  toJSON(): any {
-    return {
-      columnCount: this.columnCount,
-      cellsPerColumn: this.cellsPerColumn,
-      currentPlayer: this.currentPlayer,
-      gameOver: this.gameOver,
-      winner: this.winner,
-      moveCount: this.moveCount,
-      lastMove: {column: this.lastMove.column, cell: this.lastMove.cell},
-      columns: this.columns.map(item =&gt; item.slice()),
-      columnIndex: this.columnIndex.slice()
-    };
-  }
-&nbsp;
-  constructor(public columnCount: number, public cellsPerColumn: number) {
-    this.reset();
-  }
-&nbsp;
-  reset() {
-    this.currentPlayer = 1;
-    this.gameOver = false;
-    this.winner = 0;
-    this.moveCount = 0;
-    this.lastMove = {column: -1, cell: -1};
-&nbsp;
-    let cellPrototype = [];
-    for (let i = 0; i &lt; this.cellsPerColumn; i++) {
-      cellPrototype.push(CellContent.Empty);
+    static fromJSON(jsonData: any): ConnectFourGameModel {
+        let result = new ConnectFourGameModel(jsonData.columnCount, jsonData.cellsPerColumn);
+        result.currentPlayer = jsonData.currentPlayer;
+        result.gameOver = jsonData.gameOver;
+        result.winner = jsonData.winner;
+        result.moveCount = jsonData.moveCount;
+        result.lastMove = {column: jsonData.lastMove.column, cell: jsonData.lastMove.cell};
+        result.columns = jsonData.columns.map(column =&gt; column.map(cell =&gt; new GameCell(cell)));
+        result.columnIndex = jsonData.columnIndex.slice();
+        return result;
     }
 &nbsp;
-    let newColumns = [];
-    this.columnIndex = [];
-    for (let col = 0; col &lt; this.columnCount; col++) {
-      newColumns.push(cellPrototype.slice());
-      this.columnIndex.push(this.cellsPerColumn - 1);
+    toJSON(): any {
+        return {
+            columnCount: this.columnCount,
+            cellsPerColumn: this.cellsPerColumn,
+            currentPlayer: this.currentPlayer,
+            gameOver: this.gameOver,
+            winner: this.winner,
+            moveCount: this.moveCount,
+            lastMove: {column: this.lastMove.column, cell: this.lastMove.cell},
+            columns: this.columns.map(column =&gt; column.map(cell =&gt; cell.content)),
+            columnIndex: this.columnIndex.slice()
+        };
     }
 &nbsp;
-    this.columns = newColumns;
-  }
-&nbsp;
-  copy(): ConnectFourGameModel {
-    let result = new ConnectFourGameModel(this.columnCount, this.cellsPerColumn);
-    result.currentPlayer = this.currentPlayer;
-    result.gameOver = this.gameOver;
-    result.winner = this.winner;
-    result.moveCount = this.moveCount;
-&nbsp;
-    // Make copies of objects and arrays:
-    result.lastMove = {column: this.lastMove.column, cell: this.lastMove.cell};
-    result.columns = this.columns.map(item =&gt; item.slice());
-    result.columnIndex = this.columnIndex.slice();
-&nbsp;
-    return result;
-  }
-&nbsp;
-  playAtColumn(col: number): boolean {
-    let result = false;
-    const cell = this.columnIndex[col];
-    if (cell &gt;= 0 &amp;&amp; !this.gameOver) {
-      this.columns[col][cell] = this.currentPlayer;
-      this.currentPlayer = this.currentPlayer % 2 + 1;
-      this.moveCount++;
-      this.lastMove = {column: col, cell: cell};
-      this.columnIndex[col]--;
-      this._checkWinners();
-      result = true;
-    }
-    return result;
-  }
-&nbsp;
-  getAvailableMoves(): number[] {
-    let result = [];
-&nbsp;
-    if (!this.gameOver) {
-      this.columnIndex.forEach((item, i) =&gt; {
-        if (item &gt;= 0) {
-          result.push(i);
-        }
-      });
+    constructor(public columnCount: number, public cellsPerColumn: number) {
+        this.reset();
     }
 &nbsp;
-    return result;
-  }
+    reset() {
+        this.currentPlayer = 1;
+        this.gameOver = false;
+        this.winner = 0;
+        this.moveCount = 0;
+        this.lastMove = {column: -1, cell: -1};
 &nbsp;
-  getCell(gameCell: GameCoordinateType): number {
-    return this.columns[gameCell.column] &amp;&amp; this.columns[gameCell.column][gameCell.cell];
-  }
-&nbsp;
-  _checkWinnersAt(gameCell: GameCoordinateType, player: number, slope: number): boolean {
-    // Slope === null is used as a special value for checking columns
-    const VALID_SLOPES = [1, -1, 0, null];
-&nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (VALID_SLOPES.indexOf(slope) === -1) {
-<span class="cstat-no" title="statement not covered" >      return false;</span>
-    }
-&nbsp;
-    let winningIdx: GameCoordinateType[] = [];
-&nbsp;
-    for (let i = -WINNING_LENGTH + 1; i &lt;= WINNING_LENGTH - 1; i++) {
-&nbsp;
-      let checkingCellCoordinates = {
-        column: gameCell.column + (slope === null ? 0 : i),
-        cell: gameCell.cell + (slope === null ? 1 : slope) * i
-      };
-&nbsp;
-      let checkingCell = this.getCell(checkingCellCoordinates);
-&nbsp;
-      if (checkingCell === player || checkingCell === CellContent.Winning) {
-        winningIdx.push(checkingCellCoordinates);
-      } else {
-        if (winningIdx.length &lt; WINNING_LENGTH) {
-          winningIdx = [];
+        let columnPrototype: GameCell[] = [];
+        for (let cell = 0; cell &lt; this.cellsPerColumn; cell++) {
+            columnPrototype.push(new GameCell(CellContent.Empty));
         }
 &nbsp;
-        if (i === 1) {
-          break;
+        let newColumns = [];
+        this.columnIndex = [];
+        for (let col = 0; col &lt; this.columnCount; col++) {
+            newColumns.push(columnPrototype.map(cell =&gt; new GameCell(cell.content)));
+            this.columnIndex.push(this.cellsPerColumn - 1);
         }
-      }
 &nbsp;
+        this.columns = newColumns;
     }
 &nbsp;
-    if (winningIdx.length &gt;= WINNING_LENGTH) {
-      for (let item of winningIdx) {
-        this.columns[item.column][item.cell] = CellContent.Winning;
-      }
+    copy(): ConnectFourGameModel {
+        let result = new ConnectFourGameModel(this.columnCount, this.cellsPerColumn);
+        result.currentPlayer = this.currentPlayer;
+        result.gameOver = this.gameOver;
+        result.winner = this.winner;
+        result.moveCount = this.moveCount;
+&nbsp;
+        // Make copies of objects and arrays:
+        result.lastMove = {column: this.lastMove.column, cell: this.lastMove.cell};
+        result.columns = this.columns.map(column =&gt; column.map(cell =&gt; new GameCell(cell.content)));
+        result.columnIndex = this.columnIndex.slice();
+&nbsp;
+        return result;
     }
 &nbsp;
-    return winningIdx.length &gt;= WINNING_LENGTH;
-  }
-&nbsp;
-  _checkSeToNwDiagonal(gameCell: GameCoordinateType, player: number): boolean {
-    return this._checkWinnersAt(gameCell, player, 1);
-  }
-&nbsp;
-  _checkSwToNeDiagonal(gameCell: GameCoordinateType, player: number): boolean {
-    return this._checkWinnersAt(gameCell, player, -1);
-  }
-&nbsp;
-  _checkColumnAt(gameCell: GameCoordinateType, player: number): boolean {
-    return this._checkWinnersAt(gameCell, player, null);
-  }
-&nbsp;
-  _checkRowAt(gameCell: GameCoordinateType, player: number) {
-    return this._checkWinnersAt(gameCell, player, 0);
-  }
-&nbsp;
-  _checkWinners() {
-    const player = this.getCell(this.lastMove);
-    let hasWinner = false;
-    if (this.moveCount &gt;= WINNING_LENGTH * 2 - 1 &amp;&amp; player) {
-      hasWinner = this._checkSeToNwDiagonal(this.lastMove, player);
-      hasWinner = this._checkSwToNeDiagonal(this.lastMove, player) || hasWinner;
-      hasWinner = this._checkRowAt(this.lastMove, player) || hasWinner;
-      hasWinner = this._checkColumnAt(this.lastMove, player) || hasWinner;
-      if (hasWinner) {
-        this.winner = player;
-        this.gameOver = true;
-        this.currentPlayer = 0;
-      }
+    playAtColumn(col: number): boolean {
+        let result = false;
+        const cellIndex = this.columnIndex[col];
+        if (cellIndex &gt;= 0 &amp;&amp; !this.gameOver) {
+            this.columns[col][cellIndex] = new GameCell(this.currentPlayer);
+            this.currentPlayer = this.currentPlayer % 2 + 1;
+            this.moveCount++;
+            this.lastMove = {column: col, cell: cellIndex};
+            this.columnIndex[col]--;
+            this._checkWinners();
+            result = true;
+        }
+        return result;
     }
-  }
 &nbsp;
-  // Debugging sanity
-<span class="fstat-no" title="function not covered" >  toString(): string {</span>
-<span class="cstat-no" title="statement not covered" >    let result = '';</span>
-<span class="cstat-no" title="statement not covered" >    for (let cell = 0; cell &lt; this.cellsPerColumn; cell++) {</span>
-<span class="cstat-no" title="statement not covered" >      result += (cell &gt; 0 ? '\n' : '');</span>
-<span class="cstat-no" title="statement not covered" >      for (let col = 0; col &lt; this.columnCount; col++) {</span>
-<span class="cstat-no" title="statement not covered" >        result += (col &gt; 0 ? ' ' : '') + this.columns[col][cell];</span>
-      }
+    getAvailableMoves(): number[] {
+        let result = [];
+&nbsp;
+        if (!this.gameOver) {
+            this.columnIndex.forEach((item, i) =&gt; {
+                if (item &gt;= 0) {
+                    result.push(i);
+                }
+            });
+        }
+&nbsp;
+        return result;
     }
-<span class="cstat-no" title="statement not covered" >    return result;</span>
-  }
+&nbsp;
+    getCell(gameCell: GameCoordinateType): number {
+        return (
+            this.columns[gameCell.column] &amp;&amp;
+            this.columns[gameCell.column][gameCell.cell] &amp;&amp;
+            this.columns[gameCell.column][gameCell.cell].content);
+    }
+&nbsp;
+    _checkWinnersAt(gameCell: GameCoordinateType, player: number, slope: number): boolean {
+        // Slope === null is used as a special value for checking columns
+        const VALID_SLOPES = [1, -1, 0, null];
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (VALID_SLOPES.indexOf(slope) === -1) {
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        }
+&nbsp;
+        let winningIdx: GameCoordinateType[] = [];
+&nbsp;
+        for (let i = -WINNING_LENGTH + 1; i &lt;= WINNING_LENGTH - 1; i++) {
+&nbsp;
+            let checkingCellCoordinates = {
+                column: gameCell.column + (slope === null ? 0 : i),
+                cell: gameCell.cell + (slope === null ? 1 : slope) * i
+            };
+&nbsp;
+            let checkingCell = this.getCell(checkingCellCoordinates);
+&nbsp;
+            if (checkingCell === player || checkingCell === CellContent.Winning) {
+                winningIdx.push(checkingCellCoordinates);
+            } else {
+                if (winningIdx.length &lt; WINNING_LENGTH) {
+                    winningIdx = [];
+                }
+&nbsp;
+                if (i === 1) {
+                    break;
+                }
+            }
+&nbsp;
+        }
+&nbsp;
+        if (winningIdx.length &gt;= WINNING_LENGTH) {
+            for (let item of winningIdx) {
+                this.columns[item.column][item.cell] = new GameCell(CellContent.Winning);
+            }
+        }
+&nbsp;
+        return winningIdx.length &gt;= WINNING_LENGTH;
+    }
+&nbsp;
+    _checkSeToNwDiagonal(gameCell: GameCoordinateType, player: number): boolean {
+        return this._checkWinnersAt(gameCell, player, 1);
+    }
+&nbsp;
+    _checkSwToNeDiagonal(gameCell: GameCoordinateType, player: number): boolean {
+        return this._checkWinnersAt(gameCell, player, -1);
+    }
+&nbsp;
+    _checkColumnAt(gameCell: GameCoordinateType, player: number): boolean {
+        return this._checkWinnersAt(gameCell, player, null);
+    }
+&nbsp;
+    _checkRowAt(gameCell: GameCoordinateType, player: number) {
+        return this._checkWinnersAt(gameCell, player, 0);
+    }
+&nbsp;
+    _checkWinners() {
+        const player = this.getCell(this.lastMove);
+        let hasWinner = false;
+        if (this.moveCount &gt;= WINNING_LENGTH * 2 - 1 &amp;&amp; player) {
+            hasWinner = this._checkSeToNwDiagonal(this.lastMove, player);
+            hasWinner = this._checkSwToNeDiagonal(this.lastMove, player) || hasWinner;
+            hasWinner = this._checkRowAt(this.lastMove, player) || hasWinner;
+            hasWinner = this._checkColumnAt(this.lastMove, player) || hasWinner;
+            if (hasWinner) {
+                this.winner = player;
+                this.gameOver = true;
+                this.currentPlayer = 0;
+            }
+        }
+    }
+&nbsp;
+    // Debugging sanity
+<span class="fstat-no" title="function not covered" >    toString(): string {</span>
+<span class="cstat-no" title="statement not covered" >        let result = '';</span>
+<span class="cstat-no" title="statement not covered" >        for (let cell = 0; cell &lt; this.cellsPerColumn; cell++) {</span>
+<span class="cstat-no" title="statement not covered" >            result += (cell &gt; 0 ? '\n' : '');</span>
+<span class="cstat-no" title="statement not covered" >            for (let col = 0; col &lt; this.columnCount; col++) {</span>
+<span class="cstat-no" title="statement not covered" >                result += (col &gt; 0 ? ' ' : '') + this.columns[col][cell].content;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+    }
 }
 &nbsp;
 &nbsp;</pre></td></tr>
@@ -652,7 +673,7 @@ export class ConnectFourGameModel {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 17 2016 11:29:36 GMT-0400 (EDT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 18 2016 22:32:16 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

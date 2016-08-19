@@ -122,12 +122,10 @@ export class ConnectFourAiPlayer {
         bestScore = score;
         bestMove = move;
       }
-      
       if (currentDepth === maxDepth && gameCopy.gameOver && gameCopy.winner === player) {
         break;
       }
     }
-
 
     // Experimenting with this...
     let moveType = MoveType.Neutral;

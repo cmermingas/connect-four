@@ -74,7 +74,6 @@ onmessage = (event: MessageEvent): any => {
 
       // Plan next turn
       game.playAtColumn(result);
-      _player.plan(game);
       break;
     case Command.Reset:
       _player.reset();
