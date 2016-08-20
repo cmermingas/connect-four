@@ -11,7 +11,7 @@ import {
     style,
     keyframes
 } from '@angular/core';
-import {ConnectFourGameModel, CellContent, GameCell} from "../model/connect-four-game-model";
+import {ConnectFourGameModel, CellContent, GameCell} from '../model/connect-four-game-model';
 
 @Component({
     selector: 'connect-four',
@@ -52,5 +52,5 @@ export class ConnectFourComponent implements OnInit {
 
     clickColumn(column: number) {
         this.onColumnClick.emit(column);
-    }z
+    }
 }
