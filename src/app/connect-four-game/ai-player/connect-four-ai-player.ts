@@ -1,6 +1,6 @@
+import {ReflectiveInjector, EventEmitter} from '@angular/core';
 import {ConnectFourGameModel} from '../model/connect-four-game-model';
-// import {ConnectFourService} from '../connect-four.service';
-// import {ReflectiveInjector} from '@angular/core';
+import {ConnectFourService} from '../connect-four.service';
 
 const MAX_DEPTH = 4;
 enum MoveType {Offensive, Defensive, Neutral, Stupid}
@@ -30,9 +30,14 @@ export class HighestConcentrationHeuristic extends FilterMovesHeuristic {
 export class ConnectFourAiPlayer {
     private isThinking = false;
     private plannedMoves: number[];
-    // private gameService: ConnectFourService;
+    private gameService: ConnectFourService;
+    public turnTaken: EventEmitter<number>;
 
     constructor(public heuristic: FilterMovesHeuristic = null) {
+        // ** CLI ISSUE 1759 ** The line below causes the issue
+        // this.turnTaken = new EventEmitter<number>();
+
+        // ** CLI ISSUE 1759 ** The line below causes the issue
         // let injector = ReflectiveInjector.resolveAndCreate([ConnectFourService]);
         // this.gameService = injector.get(ConnectFourService);
     }
